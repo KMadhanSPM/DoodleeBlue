@@ -6,8 +6,18 @@
             "mobile": "5389839893",
             "company": "XYZ",
             "messageList": {
-                "received": [],
-                "sent": []
+                "received": [
+                    {
+                        "user": "Candidate3",
+                        "message": "Feel free to reach out to me if you have any questions whatsoever."
+                    }
+                ],
+                "sent": [
+                    {
+                        "user": "Candidate3",
+                        "message": "please reply with a convenient date and time."
+                    }
+                ]
             }
         },
         {
@@ -19,10 +29,15 @@
                 "received": [
                     {
                         "user": "Candidate3",
-                        "message": "Candidate3hs  shhsdhjs sjhdsjd"
+                        "message": "I’ll call you in the next few hours to explain the process in detail "
                     }
                 ],
-                "sent": []
+                "sent": [
+                    {
+                        "user": "Candidate3",
+                        "message": "Thanks for choosing "
+                    }
+                ]
             }
         },
         {
@@ -31,8 +46,18 @@
             "mobile": "9389839893",
             "company": "Max solutions",
             "messageList": {
-                "received": [],
-                "sent": []
+                "received": [
+                    {
+                        "user": "Ajith Kumar",
+                        "message": "Done entirely online and delivered"
+                    }
+                ],
+                "sent": [
+                    {
+                        "user": "Ajith Kumar",
+                        "message": "I’ll call you in the next few hours to explain the process in detail "
+                    }
+                ]
             }
         },
         {
@@ -41,13 +66,23 @@
             "mobile": "13898398937",
             "company": "ABC ltd.",
             "messageList": {
-                "received": [],
-                "sent": []
+                "received": [
+                    {
+                        "user": "Candidate3",
+                        "message": "Done entirely online and delivered"
+                    }
+                ],
+                "sent": [
+                    {
+                        "user": "Candidate3",
+                        "message": "I’ll call you in the next few hours to explain the process in detail "
+                    }
+                ]
             }
         },
         {
             "name": "Candidate5",
-            "email": "Frontgineer@gmail.com",
+            "email": "frontgineer@gmail.com",
             "mobile": "8389839893",
             "company": "MNO softwares",
             "messageList": {
@@ -57,17 +92,22 @@
         },
         {
             "name": "Candidate6",
-            "email": "Cloud Engineer",
+            "email": "cloud@gmail.com",
             "mobile": "3389839893",
             "company": "MLM Solutions",
             "messageList": {
-                "received": [],
+                "received": [
+                    {
+                        "user": "Candidate4",
+                        "message": "Feel free to reach out to me if you have any questions whatsoever."
+                    }
+                ],
                 "sent": []
             }
         },
         {
             "name": "Candidate7 ",
-            "email": "Cloud Engineer",
+            "email": "engineer@ymail.com",
             "mobile": "5389839893",
             "company": "Recruiter4",
             "messageList": {

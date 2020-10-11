@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Form, FormControl, Button, Modal, Col, Tab, Tabs } from "react-bootstrap";
 import userData from './details.json'
-import { Link } from "react-router-dom";
 import Select from 'react-select';
 
 
@@ -46,7 +45,8 @@ class ProductList extends Component {
             selectedUser: null,
             newMessagePrompt: false,
             newMessageValue: '',
-            messagesPrompt: false
+            messagesPrompt: false,
+            realData: []
         };
     }
     componentDidMount() {
@@ -78,7 +78,7 @@ class ProductList extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.contactData.length != this.state.contactData.length) {
             this.setState({
-                firstData: this.state.contactData[0]
+                firstData: this.state.contactData[0],
             })
         }
         if (prevState.firstData != this.state.firstData) {
@@ -104,32 +104,58 @@ class ProductList extends Component {
     handleContact = (e) => {
         if (this.state.handleEditIndex) {
             const editedValue = {
-                "name": this.state.fullName,
-                "email": this.state.mobileNo,
-                "mobile": this.state.mobileNo,
-                "company": this.state.companyName
+                "name": this.state.fullName != '' ? this.state.fullName : 'No Name',
+                "email": this.state.emailId != '' ? this.state.emailId : 'xyz@gmail.com',
+                "mobile": this.state.mobileNo != '' ? this.state.mobileNo : '98399298282',
+                "company": this.state.companyName != '' ? this.state.companyName : 'Kekran Mekran Company',
+                "bgColor": generateRandomDarkColors(),
+                "messageList": {
+                    "received": [],
+                    "sent": []
+                }
             }
-            const existingData = this.state.contactData;
-            existingData[this.state.handleEditIndex] = editedValue;
+            const currentData = this.state.contactData;
+            const realDataList = this.state.realData;
+            currentData[this.state.handleEditIndex] = editedValue;
+            realDataList[this.state.handleEditIndex + 1] = editedValue;
             this.setState({
-                contactData: existingData,
-                showPrompt: false
+                contactData: currentData,
+                showPrompt: false,
+                realData: realDataList
             })
+            alert("Updated Successfully!!!!!!!!!!")
         }
         else {
             const currentData = this.state.contactData;
+            const realDataList = this.state.realData;
             const newContact = {
-                "name": this.state.fullName,
-                "email": this.state.emailId,
-                "mobile": this.state.mobileNo,
-                "company": this.state.companyName,
-                "bgColor": generateRandomDarkColors()
+                "name": this.state.fullName != '' ? this.state.fullName : 'No Name',
+                "email": this.state.emailId != '' ? this.state.emailId : 'xyz@gmail.com',
+                "mobile": this.state.mobileNo != '' ? this.state.mobileNo : '98399298282',
+                "company": this.state.companyName != '' ? this.state.companyName : 'Kekran Mekran Company',
+                "bgColor": generateRandomDarkColors(),
+                "messageList": {
+                    "received": [],
+                    "sent": []
+                }
             }
             currentData.push(newContact)
+            realDataList.push(newContact)
             this.setState({
                 contactData: currentData,
-                showPrompt: false
+                showPrompt: false,
+                realData: realDataList
+            }, () => {
+                this.setState({
+                    userLists: this.state.realData.map((item) => {
+                        return {
+                            label: item.name,
+                            value: item.name,
+                        }
+                    })
+                })
             })
+            alert("Updated Successfully!!!!!!!!!!")
         }
     }
     handleView = (e, item) => {
@@ -160,22 +186,30 @@ class ProductList extends Component {
     }
     handleMessage = (e) => {
         const existingData = this.state.realData
-        const message = {
+        const indexValue = existingData.findIndex(img => img.name === this.state.selectedUser.value);
+        existingData[indexValue].messageList.sent.push({
             "user": this.state.firstData.name,
             "message": this.state.newMessageValue
-        }
-        const indexValue = existingData.findIndex(img => img.name === this.state.selectedUser.value);
-        existingData[indexValue].messageList.sent.push({ message })
-        existingData[this.state.handleEditIndex].messageList.received.push({ message })
+        })
+
+        existingData[this.state.handleEditIndex + 1].messageList.received.push({
+            "user": this.state.selectedUser.value,
+            "message": this.state.newMessageValue
+        })
         this.setState({
             realData: existingData,
             newMessagePrompt: false
+        }, () => {
+            this.setState({
+                newMessageValue: ''
+            })
         })
         alert("Message Sent !!")
     }
 
     render() {
-        console.log(this.state.realData)
+        const sentMessage = this.state.realData && this.state.selectedUser != null ? this.state.realData.filter(i => i.name == this.state.selectedUser.value)[0].messageList.sent : []
+        const receivedMessage = this.state.realData && this.state.selectedUser != null ? this.state.realData.filter(i => i.name == this.state.selectedUser.value)[0].messageList.received : []
         return (
             <div className='product-list p-3'>
                 <Container>
@@ -260,13 +294,16 @@ class ProductList extends Component {
                                 <div className='top-bar'>
                                     <Row>
                                         <Col md={5}>
-                                            <p>Basic Info</p>
+                                            <p><b>Basic Info</b></p>
                                         </Col>
                                         <Col md={5}>
-                                            <p>Company Name</p>
+                                            <p><b>Company Name</b></p>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col md={1}>
                                             <p className='pl-1'><i className="fa fa-edit" aria-hidden="true"></i></p>
+                                        </Col>
+                                        <Col md={1} className='p-0'>
+                                            <p className='pl-2'><i className="fa fa-comment" aria-hidden="true"></i></p>
                                         </Col>
                                     </Row>
                                 </div>
@@ -316,8 +353,8 @@ class ProductList extends Component {
                                                 <form onSubmit={(e) => this.handleMessage(e)}>
                                                     <Row>
                                                         <Col md={12}>
-                                                            <p>Message</p>
-                                                            <input value={this.state.newMessageValue} style={{ width: '100%', border: '1px solid #d6d6d6' }} onChange={(e) => { this.setState({ newMessageValue: e.target.value }) }} />
+                                                            <p>New Message</p>
+                                                            <textarea value={this.state.newMessageValue} style={{ width: '100%', border: '1px solid #d6d6d6' }} onChange={(e) => { this.setState({ newMessageValue: e.target.value }) }} />
                                                         </Col>
                                                     </Row>
                                                     <div className='submit-btn text-center'>
@@ -334,20 +371,39 @@ class ProductList extends Component {
                                             aria-labelledby="contained-modal-title-vcenter"
                                             centered
                                             className="modal-vs confirm-modal add-contact" show={this.state.messagesPrompt} onHide={() => { this.setState({ messagesPrompt: false }) }}>
-                                            <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-                                                <Modal.Body>
-                                                    <Tab eventKey="home" title="Home">
-                                                        <h1>yysyysy</h1>
-                                                    </Tab>
-                                                    <Tab eventKey="profile" title="Profile">
-                                                        <h1>yysyysy</h1>
-                                                    </Tab>
-                                                    <Tab eventKey="contact" title="Contact" disabled>
-                                                        <h1>yysyysy</h1>
-                                                    </Tab>
-                                                </Modal.Body>
-                                            </Tabs>
+                                            <Modal.Body>
 
+                                                <Tabs defaultActiveKey="sent" id="uncontrolled-tab-example">
+                                                    <Tab eventKey="sent" title="Sent">
+                                                        {
+                                                            sentMessage.length != 0 ?
+                                                                sentMessage.map((k, index) => {
+                                                                    return (
+                                                                        < div className='message-list' key={index}>
+                                                                            <h5>{k.user}</h5>
+                                                                            <p>{k.message}</p>
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                                : <p className='p-4 text-center' style={{ fontSize: '20px' }}><b>No Messages</b></p>
+                                                        }
+                                                    </Tab>
+                                                    <Tab eventKey="received" title="Received">
+                                                        {
+                                                            receivedMessage.length != 0 ?
+                                                                receivedMessage.map((k, index) => {
+                                                                    return (
+                                                                        < div className='message-list' key={index}>
+                                                                            <h5>{k.user}</h5>
+                                                                            <p>{k.message}</p>
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                                : <p className='p-4 text-center' style={{ fontSize: '20px' }}><b>No Messages</b></p>
+                                                        }
+                                                    </Tab>
+                                                </Tabs>
+                                            </Modal.Body>
                                         </Modal>
                                         : ''
                                 }
@@ -385,7 +441,7 @@ class ProductList extends Component {
 
 
                 </Container>
-            </div>
+            </div >
         );
     }
 }

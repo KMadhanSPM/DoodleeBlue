@@ -76,6 +76,7 @@ body {
         .contact-detail {
           background: #f2f2f2;
           padding: 20px;
+          min-height: 480px;
           .contact-view {
             label {
               color: #777;
@@ -86,6 +87,32 @@ body {
           }
         }
       }
+    }
+  }
+  .btn-light {
+    box-shadow: none !important;
+    background: none !important;
+    border: none !important;
+    &:focus,
+    &:hover {
+      box-shadow: none !important;
+      background: none !important;
+      border: none !important;
+    }
+  }
+  .message-list {
+    padding: 5px;
+    h5 {
+      color: #000;
+      font-weight: bold;
+      margin: 0;
+      font-size: 18px;
+    }
+    p {
+      color: #333;
+      margin: 0;
+      margin-bottom: 5px;
+      font-size: 15px;
     }
   }
   .add-contact {
@@ -101,5 +128,13 @@ body {
         color: #fff;
       }
     }
+  }
+  .nav-tabs .nav-item.show .nav-link,
+  .nav-tabs .nav-link.active {
+    border-bottom: 3px solid #0074f4;
+  }
+  .tab-content {
+    border: 1px solid #d6d6d6;
+    min-height: 200px;
   }
 }
