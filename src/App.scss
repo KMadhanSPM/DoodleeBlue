@@ -1,67 +1,104 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background: #fff;
-}
-table {
-  border-collapse: separate;
-  border-spacing: 0 1em;
+  background-color: #fff;
+  position: absolute;
   width: 100%;
-}
-
-.App {
-  text-align: center;
-  background: #fff;
-
-  //Adding Leader Button
-  .add {
-    font-size: 22px;
-    font-weight: bold;
-    color: #000;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 1px solid #bbb;
-    background: #eee;
-  }
-
-  //LeaderBoard
-  .leaderboard {
-    border: 1px solid #bbb;
-    //Leader Name and Points
-    table {
-      .name{
-        width: 50%;
-        font-weight: bold;
-        color: #333;
+  height: 100%;
+  font-family: "Arial";
+  .App {
+    p {
+      color: #000;
+    }
+    .product-list {
+      .contact-section {
+        i {
+          color: #f00;
+          font-size: 32px;
+        }
+        h3 {
+          color: #000;
+          font-weight: bold;
+          font-size: 22px;
+          margin-top: -10px;
+          p {
+            font-size: 13px;
+            color: #333;
+          }
+        }
       }
-      .point{
-        width: 30%;
-        color: #0074f4;
-        font-weight: bold;
+      #react-select-2-input {
+        width: 100% !important;
       }
-      td {
-        background-color: #eee;
-        //Point Value Increment and Decrement Button
-        .input-group {
-          width: 100%;
-          position: relative;
-          display: table;
-          border-collapse: separate;
-          button {
-            border: 0;
-            padding: 9px 8px;
-            box-shadow: none;
-            width: 50%;
-            position: relative;
-            i {
-              position: absolute;
-              top: 2px;
-              left: 4px;
-              color: #666;
+      .input-search {
+        padding: 0 !important;
+        input {
+          border-radius: 21px;
+          padding: 20px;
+          background: #f3f3f3;
+        }
+        i.fa-search {
+          position: absolute;
+          right: 12px;
+          padding: 10px;
+          border-radius: 21px;
+        }
+      }
+      .manage-list {
+        .top-bar {
+          background: #e0e0e0;
+          p {
+            padding: 15px;
+            margin: 0;
+          }
+        }
+        .selected-contact {
+          &:hover {
+            background: #d6d6d6;
+          }
+        }
+        .user-logo {
+          background-color: rgb(239, 239, 240);
+          border-radius: 50%;
+          display: inline-block;
+          width: 55px;
+          height: 55px;
+          vertical-align: middle;
+          text-align: center;
+          padding: 15px 0;
+          margin-right: 15px;
+          font-weight: bold;
+        }
+        button.handle-button {
+          background: transparent;
+          border: none;
+          padding: 0;
+          color: #000;
+        }
+        .contact-detail {
+          background: #f2f2f2;
+          padding: 20px;
+          .contact-view {
+            label {
+              color: #777;
+            }
+            p {
+              display: inline-block;
             }
           }
         }
+      }
+    }
+  }
+  .add-contact {
+    form {
+      input[type="text"] {
+        border: 1px solid #d6d6d6;
+        background: #fff;
+      }
+      input[type="submit"] {
+        margin: 15px;
+        border: 1px solid #d6d6d6;
+        background: #0074f4;
+        color: #fff;
       }
     }
   }

@@ -1,0 +1,79 @@
+{
+    "data": [
+        {
+            "name": "Ajith Kumar",
+            "email": "Frontgineer@gmail.com",
+            "mobile": "5389839893",
+            "company": "XYZ",
+            "messageList": {
+                "received": [],
+                "sent": []
+            }
+        },
+        {
+            "name": "Vijaya Kumar",
+            "email": "Frontgineer@gmail.com",
+            "mobile": "6389839893",
+            "company": "ABC",
+            "messageList": {
+                "received": [
+                    {
+                        "user": "Candidate3",
+                        "message": "Candidate3hs  shhsdhjs sjhdsjd"
+                    }
+                ],
+                "sent": []
+            }
+        },
+        {
+            "name": "Candidate3",
+            "email": "Frontgineer@gmail.com",
+            "mobile": "9389839893",
+            "company": "Max solutions",
+            "messageList": {
+                "received": [],
+                "sent": []
+            }
+        },
+        {
+            "name": "Candidate4",
+            "email": "Frontgineer@gmail.com",
+            "mobile": "13898398937",
+            "company": "ABC ltd.",
+            "messageList": {
+                "received": [],
+                "sent": []
+            }
+        },
+        {
+            "name": "Candidate5",
+            "email": "Frontgineer@gmail.com",
+            "mobile": "8389839893",
+            "company": "MNO softwares",
+            "messageList": {
+                "received": [],
+                "sent": []
+            }
+        },
+        {
+            "name": "Candidate6",
+            "email": "Cloud Engineer",
+            "mobile": "3389839893",
+            "company": "MLM Solutions",
+            "messageList": {
+                "received": [],
+                "sent": []
+            }
+        },
+        {
+            "name": "Candidate7 ",
+            "email": "Cloud Engineer",
+            "mobile": "5389839893",
+            "company": "Recruiter4",
+            "messageList": {
+                "received": [],
+                "sent": []
+            }
+        }
+    ]
+}

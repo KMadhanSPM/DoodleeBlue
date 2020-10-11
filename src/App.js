@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
-import Leaderboard from './LeaderBoard';
+import React, { Component } from "react";
 import './App.scss';
+import ProductList from "./ProductList";
 
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-    }
+
+    };
   }
 
   render() {
     return (
-      <>
-        <Leaderboard />
-      </>
+      <div className='App'>
+        <ProductList />
+      </div>
     );
   }
 }
